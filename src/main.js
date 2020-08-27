@@ -7,6 +7,7 @@ import router from './router'
 import fastclick from 'fastclick'
 import 'common/stylus/index.styl'
 import Mutils from 'common/js/index.js'
+import store from './store'
 
 Vue.config.productionTip = false
 fastclick.attach(document.body)
@@ -17,6 +18,7 @@ Vue.prototype.$mutils = Mutils
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

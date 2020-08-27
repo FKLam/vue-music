@@ -1,11 +1,14 @@
 <template>
 	<div class="singer">
-    <list-view :data="singers"></list-view>
+    <list-view :data="singers" @select="selectSinger"></list-view>
+    <router-view></router-view>
 	</div>
 </template>
 
 <script type="text/ecmascript-6">
 import ListView from 'base/listview/listview'
+import {mapMutations} from 'vuex'
+import Singer from 'common/js/singer'
 
 const pinyin = require('pinyin')
 const HOT_NAME = '热门'
@@ -23,6 +26,12 @@ export default {
     this._getSingerList()
   },
   methods: {
+    selectSinger (singer) {
+      this.$router.push({
+        path: `/singer/${singer.id}`
+      })
+      this.setSinger(singer)
+    },
     async _getSingerList () {
       let params = {
         limit: 100,
@@ -51,12 +60,12 @@ export default {
       }
       list.forEach((item, index) => {
         if (index < HOT_SINGERS) {
-          map.hot.items.push({
+          map.hot.items.push(new Singer({
             id: item.id,
             name: item.name,
             avatar: item.img1v1Url,
             aliaName: item.alias.join(' / ')
-          })
+          }))
         }
         const key = item.initial
         if (!map[key]) {
@@ -65,12 +74,12 @@ export default {
             items: []
           }
         }
-        map[key].items.push({
+        map[key].items.push(new Singer({
           id: item.id,
           name: item.name,
           avatar: item.img1v1Url,
           aliaName: item.alias[0]
-        })
+        }))
       })
       let hot = []
       let ret = []
@@ -86,7 +95,10 @@ export default {
         return a.title.charCodeAt(0) - b.title.charCodeAt(0)
       })
       return hot.concat(ret)
-    }
+    },
+    ...mapMutations({
+      setSinger: 'SET_SINGER'
+    })
   }
 }
 </script>
