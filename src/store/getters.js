@@ -11,3 +11,4 @@ export const currentSong = (state) => {
 }
 export const mode = state => state.mode
 export const disc = state => state.disc
+export const topList = state => state.topList
