@@ -6,7 +6,7 @@
 		<h1 class="title" v-html="title"></h1>
 		<div class="bg-image" :style="bgStyle" ref="bgImage">
 			<div class="play-wrapper">
-				<div class="play" v-show="songs.length" ref="playButton" @click='random'>
+				<div class="play" v-show="songs && songs.length" ref="playButton" @click='random'>
 					<i class="icon-play"></i>
 					<span class="text">随机播放全部</span>
 				</div>
@@ -18,7 +18,7 @@
 			<div class="song-list-wrapper">
 				<song-list :songs="songs" @select="select"></song-list>
 			</div>
-			<div class="loading-container" v-show="!songs.length">
+			<div class="loading-container" v-show="!songs || !songs.length">
 				<loading></loading>
 			</div>
 		</scroll>
@@ -72,6 +72,9 @@ export default {
     this.listenScroll = true
   },
   mounted () {
+    if (!this.$refs.list) {
+      return
+    }
     this.imageHeight = this.$refs.bgImage.clientHeight
     this.minTranslateY = -this.imageHeight + RESERVED_HEIGHT
     this.$refs.list.$el.style.top = `${this.imageHeight}px`
@@ -95,6 +98,12 @@ export default {
       })
     },
     handlePlayList (playlist) {
+      if (!this.$refs.list) {
+        return
+      }
+      if (!playlist) {
+        return
+      }
       const bottom = playlist.length > 0 ? '60px' : ''
       this.$refs.list.$el.style.bottom = bottom
       this.$refs.list.refresh()
