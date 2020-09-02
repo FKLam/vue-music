@@ -23,6 +23,18 @@ export function createSong (musicData) {
   })
 }
 
+export function createSuggestSong (musicData) {
+  return new Song({
+    id: musicData.id,
+    mid: musicData.id,
+    singer: filterSinger(musicData.artists),
+    name: musicData.name,
+    album: musicData.album.name,
+    duration: musicData.duration,
+    image: musicData.artists[0].img1v1Url
+  })
+}
+
 function filterSinger (singer) {
   let ret = []
   if (!singer) {
