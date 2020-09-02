@@ -3,6 +3,7 @@
 > Vue 仿网易云Web App音乐播放器
 ```
 ```
+## [github项目地址](https://github.com/FKLam/vue-music)
 * 1）推荐页布局
 <br/>
 
