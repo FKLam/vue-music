@@ -33,3 +33,10 @@
 <br/>
 
 ![歌单详情页](https://github.com/FKLam/vue-music/blob/Dev/screenImages/%E6%88%AA%E5%B1%8F2020-09-0116.19.59.png)
+
+* 7）搜索页
+<br/>
+
+![搜索页](https://github.com/FKLam/vue-music/blob/Dev/screenImages/%E6%88%AA%E5%B1%8F2020-09-0217.29.55.png)
+
+![搜索页-1](https://github.com/FKLam/vue-music/blob/Dev/screenImages/%E6%88%AA%E5%B1%8F2020-09-0217.30.09.png)
