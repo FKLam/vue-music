@@ -83,12 +83,6 @@ export default {
       }
       return ''
     },
-    getFavoriteIcon (item) {
-      if (this.currentSong.id === item.id) {
-        return 'fa-volume-up'
-      }
-      return ''
-    },
     changeMode () {
       const mode = (this.mode + 1) % 3
       this.setPlayMode(mode)
@@ -108,7 +102,6 @@ export default {
       this.setCurrentIndex(index)
       this.setPlayingState(true)
     },
-    toggleFavorite (item) {},
     deleteOne (item) {
       this.deleteSong(item)
       if (!this.playList.length) {
